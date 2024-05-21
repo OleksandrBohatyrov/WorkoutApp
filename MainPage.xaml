@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkoutApp.MainPage"
+             Title="WorkoutApp">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Основное содержание страницы -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20">
+
+                <!-- Заголовок и слоган -->
+                <Label Text="WorkoutApp"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                <Label Text="Ваш личный тренер всегда с вами"
+                       FontSize="14"
+                       HorizontalOptions="Center" />
+
+                <!-- Баннер -->
+                <Frame BackgroundColor="LightBlue"
+                       CornerRadius="10"
+                       Padding="15"
+                       Margin="0,20,0,20">
+                    <StackLayout>
+                        <Image Source="banner_image.png" Aspect="AspectFill" HeightRequest="150" />
+                        <Label Text="Начните свою тренировку сегодня!"
+                               FontSize="18"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Кнопка "Начать тренировку" -->
+                <Button Text="Начать тренировку"
+                        BackgroundColor="Green"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        HeightRequest="50"
+                        Margin="0,0,0,20"
+                        HorizontalOptions="Center"
+                        Clicked="OnStartWorkoutClicked"/>
+
+                <!-- Рекомендованные программы -->
+                <Label Text="Рекомендованные программы"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,10" />
+                <CollectionView ItemsSource="{Binding RecommendedPrograms}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="LightGray"
+                                   CornerRadius="10"
+                                   Padding="10"
+                                   Margin="0,0,0,10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50" />
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                        <Label Text="{Binding Description}" FontSize="12" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Мини-календарь -->
+                <Label Text="Календарь тренировок"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Margin="0,20,0,10" />
+                <!-- Здесь предполагается использование стороннего элемента календаря или создание своего собственного -->
+
+                <!-- Статистика -->
+                <Label Text="Статистика"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Margin="0,20,0,10" />
+                <Frame BorderColor="LightGray"
+                       CornerRadius="10"
+                       Padding="10">
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Label Text="Тренировок за неделю:" FontAttributes="Bold" />
+                        <Label Text="{Binding WorkoutsThisWeek}" />
+                        <Label Text="Сожженные калории:" FontAttributes="Bold" />
+                        <Label Text="{Binding CaloriesBurned}" />
+                    </StackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Нижняя навигационная панель -->
+        <StackLayout Orientation="Horizontal"
+                     BackgroundColor="Purple"
+                     VerticalOptions="End"
+                     Padding="10"
+                     Spacing="20"
+                     Grid.Row="1">
+            <Button Text="Home" Clicked="OnHomeClicked" TextColor="White" />
+            <Button Text="Programs" Clicked="OnProgramsClicked" TextColor="White" />
+            <Button Text="Progress" Clicked="OnProgressClicked" TextColor="White" />
+            <Button Text="Settings" Clicked="OnSettingsClicked" TextColor="White" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
