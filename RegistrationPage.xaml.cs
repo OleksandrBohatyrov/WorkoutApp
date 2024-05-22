@@ -27,5 +27,11 @@ namespace WorkoutApp
 
             await Navigation.PushAsync(new UserDetailsPage(user));
         }
+
+
+        private async void OnLoginButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginPage());
+        }
     }
 }
